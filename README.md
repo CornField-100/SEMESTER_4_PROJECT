@@ -1,4 +1,4 @@
-# My Lang Buddy: A Simple AI Chatbo
+# My Lang Buddy: A Simple AI Chatbot
 ## Overview
 1. Concept
 2. Techonologies used
