@@ -1,9 +1,8 @@
-// src/components/ChatBox.jsx
 import { useState } from "react";
 import api from "../api/axios";
 
 export default function ChatBox() {
-  const [role, setRole] = useState("teacher"); // default role
+  const [role, setRole] = useState("teacher");
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);

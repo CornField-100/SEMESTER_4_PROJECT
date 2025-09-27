@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";

@@ -1,12 +1,10 @@
-// routes/chat.js
 import express from "express";
 import { callLLM } from "../services/llmService.js";
 import { teacherPrompt, peerPrompt } from "../prompts.js";
-import { verifyAuth } from "../middleware/auth.js"; // <-- middleware to check JWT
+import { verifyAuth } from "../middleware/auth.js"; 
 
 const router = express.Router();
 
-// protect this route with JWT
 router.post("/", verifyAuth, async (req, res) => {
   try {
     const { message, role = "teacher", userLang = "English" } = req.body;
@@ -24,7 +22,7 @@ router.post("/", verifyAuth, async (req, res) => {
     const result = await callLLM({ systemPrompt, message, userLang });
     
     res.json({
-      reply: result.text || result,   // plain string
+      reply: result.text || result,
       usage: result.usage || null,
       truncated: result.finishReason === "MAX_TOKENS"
     });

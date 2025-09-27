@@ -1,4 +1,3 @@
-// src/components/SignupForm.jsx
 import { useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
