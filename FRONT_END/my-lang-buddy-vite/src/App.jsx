@@ -1,36 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { useAuth, AuthProvider } from "./context/AuthContext";
+import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
+import ChatBox from "./components/ChatBox";
 
-function App() {
-  const [count, setCount] = useState(0)
+function AppContent() {
+  const { token, logout } = useAuth();
+
+  if (!token) {
+    return (
+      <div className="flex gap-8">
+        <LoginForm />
+        <SignupForm />
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="p-6">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl">Welcome to MyLangBuddy 🎉</h1>
+        <button
+          onClick={logout}
+          className="bg-red-500 text-white py-2 px-4 rounded"
+        >
+          Logout
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      return <div className="m-8 p-6 bg-blue-600 text-white rounded">Tailwind is working ✅</div>;
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <ChatBox />
+    </div>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
